@@ -30,8 +30,10 @@ namespace HolaMundo
 
         private void btnValidar_Click(object sender, EventArgs e)
         {
+            // Expresión regular para validar cadenas con al menos una mayúscula, minúscula, número y carácter especial.
             Regex validacion = new Regex("^(?=.*[A-Z])(?=.*[a-z])(?=.*\\d)(?=.*[\\W_]).*$");
 
+            // Verifica si los campos de contraseña uno y contraseña dos están vacíos.
             if (string.IsNullOrEmpty(txtContrasenaUno.Text) && 
                string.IsNullOrEmpty(txtContrasenaDos.Text))
             {
@@ -39,12 +41,14 @@ namespace HolaMundo
                 return;
             }
 
+            // Verifica si los campos de contraseña uno y contraseña dos son iguales.
             if (!txtContrasenaUno.Text.Equals(txtContrasenaDos.Text))
             {
                 MessageBox.Show("Las contraseñas no son iguales");
                 return;
             }
 
+            // Verifica el campo contraseña uno es valido por medio de la expresión regular.
             if (validacion.IsMatch(txtContrasenaUno.Text))
             {
                 MessageBox.Show("La contraseña es valida");
